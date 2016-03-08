@@ -31,3 +31,6 @@ recommendations that are placed on our website by other users.
 ### [Project Plan](ProjectPlan.md)
 
 ### [Development Journal](Journal.md)
+
+* Goodreads web api key: FCu2HvScdASGklfD1GmDBg
+* https://www.goodreads.com/api
