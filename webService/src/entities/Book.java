@@ -7,13 +7,15 @@ public class Book {
 
     private String title;
     private String author;
+    private String isbn;
 
     public Book() {
     }
 
-    public Book(String author, String title) {
+    public Book(String author, String title, String isbn) {
         this.author = author;
         this.title = title;
+        this.isbn = isbn;
     }
 
     public String getTitle() {
@@ -30,5 +32,13 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 }
