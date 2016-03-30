@@ -5,6 +5,7 @@ import org.xml.sax.SAXException;
 
 import javax.ws.rs.*;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,12 +47,19 @@ public class Bookworm {
             e.printStackTrace();
         }
 
-        JAXBContext jc = JAXBContext.newInstance( "entities.Book" );
-        Unmarshaller u = jc.createUnmarshaller();
-        StringBuffer xmlStr = new StringBuffer(xml);
-        Object o = u.unmarshal( new StreamSource( new StringReader( xmlStr.toString() ) ) );
+        //Nancy's Code
+        Book[] books = null;
 
-        return "";
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance("entities.Book");
+            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            StringReader xmlStr = new StringReader(xml);
+            books = (Book[]) unmarshaller.unmarshal(xmlStr);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(books.toString());
 
 
         /*
