@@ -19,8 +19,11 @@ public class Book {
         return title;
     }
 
-    public void setTitle(String title) {
+
+    public Book(String author, String title, String isbn) {
+        this.author = author;
         this.title = title;
+        this.isbn = isbn;
     }
 
     public String getIsbn() {
@@ -69,5 +72,13 @@ public class Book {
 
     public void setAuthors(List<Author> authors) {
         this.authors = authors;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 }
