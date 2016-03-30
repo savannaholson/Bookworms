@@ -27,6 +27,15 @@ public class Bookworm {
         GoodreadsAPI apiRequest = new GoodreadsAPI();
         String xml = "";
 
+
+
+
+
+
+
+
+
+
         try {
             xml = apiRequest.getBooksByAuthorName(authorFirst + "%20" + authorLast);
         } catch (IOException e) {
@@ -49,6 +58,8 @@ public class Bookworm {
 
         return recomendationsJSON;
         */
+
+        return "";
     }
 
     /*
