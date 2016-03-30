@@ -28,14 +28,14 @@ public class Bookworm {
         String xml = "";
 
         try {
-            xml = apiRequest.getBooksByAuthorName(authorLast)
+            xml = apiRequest.getBooksByAuthorName(authorFirst + "%20" + authorLast);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SAXException e) {
             e.printStackTrace();
         }
 
-        
+
 
 
         /*
