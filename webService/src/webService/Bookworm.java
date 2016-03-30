@@ -1,11 +1,10 @@
 package webService;
 
 import entities.Book;
+import org.xml.sax.SAXException;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,23 +18,40 @@ public class Bookworm {
     @GET
     // The Java method will produce content identified by the MIME Media type "text/plain"
     @Produces("application/json")
-    @Path("/{title}/{author}")
+    @Path("/{authorFirst}/{authorLast}")
     public String getRecomendationWithTitleAndAuthor(
-            @PathParam("title") String title,
-            @PathParam("author") String author
+            @PathParam("authorFirst") String authorFirst,
+            @PathParam("authorLast") String authorLast
             ) {
 
+        GoodreadsAPI apiRequest = new GoodreadsAPI();
+        String xml = "";
+
+        try {
+            xml = apiRequest.getBooksByAuthorName(authorLast)
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
+
+        
+
+
+        /*
         ArrayList<Book> recomendations = new ArrayList<Book>();
 
         Book book = new Book(author, title); //INCOMPLETE!!! THE BOOKS IN THE ARRAY LIST NEED TO BE GOTTEN FROM GOODREADS
 
         recomendations.add(book); // THIS WILL CONTAIN BOOK OBJECTS
 
-        String recomendationsJSON = getJsonFromBooksList(recomendations);
+        String recomendationsJSON = "";
 
         return recomendationsJSON;
+        */
     }
 
+    /*
     public String getJsonFromBooksList(List<Book> books) {
         String json = "[";
 
@@ -51,5 +67,6 @@ public class Bookworm {
 
         return json;
     }
+    */
 
 }
