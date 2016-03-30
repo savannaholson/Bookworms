@@ -8,10 +8,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.*;
+
 /**
  * Created by savannaholson on 3/8/16.
  */
-// The Java class will be hosted at the URI path "/helloworld"
+// The Java class will be hosted at the URI path "/webservice"
 @Path("/webService")
 public class Bookworm {
     // The Java method will process HTTP GET requests
@@ -35,7 +37,12 @@ public class Bookworm {
             e.printStackTrace();
         }
 
+        JAXBContext jc = JAXBContext.newInstance( "entities.Book" );
+        Unmarshaller u = jc.createUnmarshaller();
+        StringBuffer xmlStr = new StringBuffer(xml);
+        Object o = u.unmarshal( new StreamSource( new StringReader( xmlStr.toString() ) ) );
 
+        return "";
 
 
         /*
