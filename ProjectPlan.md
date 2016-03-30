@@ -20,16 +20,20 @@
 - [X] Nancy assigned to creating application flow file
 - [X] Nancy updated project plan and readme file
 
-
 ### Week 10
-- [ ] Bookworms team meeting discussing progress on assigned objectives from week 9
-- [ ] Alex created java beans for web service
-- [ ] Alex created send request for web service
-- [ ] Savannah converted beans into JSON
-- [ ] Nancy converted XML to beans
-- [ ] Nancy updated project plan and readme file
-- [ ] Nancy created application flow file
+- [X] Bookworms team meeting discussing progress on assigned objectives from week 9
+- [X] Alex created java beans for web service
+- [X] Alex created send request for web service
+- [X] Savannah converted beans into JSON
+- [X] Nancy converted XML to beans
+- [X] Nancy updated project plan and readme file
+- [X] Nancy and Savannah created application flow file
 
 ### Week 11
+- [ ] Group meeting regarding completed project presentation.
+- [ ] Make powerpoint presentation to coincide with project code.
 - [ ] Deploy the service to OpenShift.
+
+
+### Week 12
 - [ ] Group presentation.
