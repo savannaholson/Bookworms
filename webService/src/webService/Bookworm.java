@@ -1,6 +1,6 @@
 package webService;
 
-import entities.Book;
+import entities.GoodreadsResponseType;
 import org.xml.sax.SAXException;
 
 import javax.ws.rs.*;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.*;
+import javax.xml.transform.stream.StreamSource;
 
 /**
  * Created by savannaholson on 3/8/16.
@@ -32,13 +33,6 @@ public class Bookworm {
 
 
 
-
-
-
-
-
-
-
         try {
             xml = apiRequest.getBooksByAuthorName(authorFirst + "%20" + authorLast);
         } catch (IOException e) {
@@ -48,18 +42,17 @@ public class Bookworm {
         }
 
         //Nancy's Code
-        Book[] books = null;
+        GoodreadsResponseType books = null;
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance("entities.Book");
+            JAXBContext jaxbContext = JAXBContext.newInstance(GoodreadsResponseType.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            StringReader xmlStr = new StringReader(xml);
-            books = (Book[]) unmarshaller.unmarshal(xmlStr);
+            StringBuffer xmlStr = new StringBuffer(xml);
+            books = (GoodreadsResponseType) unmarshaller.unmarshal(new StreamSource(new StringReader(xmlStr.toString()) ) );
+
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-
-        System.out.println(books.toString());
 
 
         /*
