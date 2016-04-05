@@ -1,5 +1,6 @@
 package webService;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import entities.GoodreadsResponseType;
 import org.xml.sax.SAXException;
 
@@ -11,6 +12,11 @@ import java.util.List;
 
 import javax.xml.bind.*;
 import javax.xml.transform.stream.StreamSource;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationConfig;
 
 /**
  * Created by savannaholson on 3/8/16.
@@ -55,37 +61,18 @@ public class Bookworm {
         }
 
 
-        /*
-        ArrayList<Book> recomendations = new ArrayList<Book>();
+        //Savannah's Code
+        ObjectMapper mapper = new ObjectMapper();
+        String json = "";
 
-        Book book = new Book(author, title); //INCOMPLETE!!! THE BOOKS IN THE ARRAY LIST NEED TO BE GOTTEN FROM GOODREADS
 
-        recomendations.add(book); // THIS WILL CONTAIN BOOK OBJECTS
-
-        String recomendationsJSON = "";
-
-        return recomendationsJSON;
-        */
-
-        return "";
-    }
-
-    /*
-    public String getJsonFromBooksList(List<Book> books) {
-        String json = "[";
-
-        for (Book book : books) {
-
-            json += "{ \"title\": \"" + book.getTitle() + "\", \"author\":\"" + book.getAuthor() + "\" },";
-
+        try {
+            json = mapper.writeValueAsString(books);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
-
-        json = json.substring(0, (json.length() - 1) );
-
-        json += "]";
 
         return json;
     }
-    */
 
 }
