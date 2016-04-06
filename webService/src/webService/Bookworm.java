@@ -48,6 +48,17 @@ public class Bookworm {
         }
 
         //Nancy's Code
+        GoodreadsResponseType books = unmarshalGoodreadsXML(xml);
+
+
+        //Savannah's Code
+        String json = convertToJSON(books);
+
+        return json;
+    }
+
+    private GoodreadsResponseType unmarshalGoodreadsXML(String xml) {
+
         GoodreadsResponseType books = null;
 
         try {
@@ -60,14 +71,17 @@ public class Bookworm {
             e.printStackTrace();
         }
 
+        return books;
+    }
 
-        //Savannah's Code
+    private String convertToJSON(Object object) {
+
         ObjectMapper mapper = new ObjectMapper();
         String json = "";
 
 
         try {
-            json = mapper.writeValueAsString(books);
+            json = mapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -76,3 +90,4 @@ public class Bookworm {
     }
 
 }
+
