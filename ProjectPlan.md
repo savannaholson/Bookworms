@@ -8,9 +8,6 @@
 - [X] Completed Activity 3 - Create and Test Your second RESTful Web Service in IntelliJ
 
 ### Week 8
-- [X] Spring break
-
-### Week 9
 - [X] Bookworms Group Meeting discussing application flow, defined project objectives and web service output
 - [X] Alex assigned to creating java beans for web service
 - [X] Alex assigned to creating send request for web service
@@ -19,6 +16,9 @@
 - [X] Nancy assigned to converting XML to beans
 - [X] Nancy assigned to creating application flow file
 - [X] Nancy updated project plan and readme file
+
+### Week 9
+- [X] Spring break
 
 ### Week 10
 - [X] Bookworms team meeting discussing progress on assigned objectives from week 9
