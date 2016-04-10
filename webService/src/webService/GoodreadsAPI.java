@@ -59,13 +59,15 @@ public class GoodreadsAPI {
         InputStream in = goodreadsUrl.openStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
-        String line;
+        String line = null;
         String xml = "";
-        while (reader.ready()) {
-            line = reader.readLine();
+        while ((line = reader.readLine()) != null) {
             xml += line;
             System.out.println(line);
+
         }
+
+        reader.close();
         return xml;
     }
 
