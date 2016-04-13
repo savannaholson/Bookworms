@@ -24,6 +24,15 @@ import com.fasterxml.jackson.databind.SerializationConfig;
 // The Java class will be hosted at the URI path "/webservice"
 @Path("/webService")
 public class Bookworm {
+
+    /**
+     * This method takes the author's first and last names and uses them to return books by the author in JSON format
+     *
+     * @param authorFirst the first name of the author
+     * @param authorLast the last name of the author
+     * @return A string of json data that was retrived based on the first and last name provided, containing all of the
+     * goodreads api information returned.
+     */
     // The Java method will process HTTP GET requests
     @GET
     // The Java method will produce content identified by the MIME Media type "text/plain"
@@ -57,6 +66,12 @@ public class Bookworm {
         return json;
     }
 
+    /**
+     * This method takes xml representing goodreads objects and converts it into POJOs
+     *
+     * @param xml The xml to be unmarshalled
+     * @return a pojo representing the data from the xml
+     */
     private GoodreadsResponseType unmarshalGoodreadsXML(String xml) {
 
         GoodreadsResponseType books = null;
@@ -74,6 +89,12 @@ public class Bookworm {
         return books;
     }
 
+    /**
+     * This method takes any object and converts it into JSON
+     *
+     * @param object the object to be converted into JSON
+     * @return a string of JSON representing the object passed in
+     */
     private String convertToJSON(Object object) {
 
         ObjectMapper mapper = new ObjectMapper();
