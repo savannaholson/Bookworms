@@ -31,3 +31,29 @@ We are off to a great start working well together as a team!
 
 ### Week 9
 Spring Break
+
+### Week 10
+
+    * Had a Bookworms Group meeting where we discussed pregress on assigned objectives from week 8
+    * Alex created java beans for web service
+    * Alex created send request for web service
+    * Savannah converted beans into JSON
+    * Nancy converted XML to beans using the JAXB unmarshaller
+    * Nancy updated project plan and readme file
+    * Nancy and Savannah created application flow file
+ 
+Nancy struggled with converting the xsd/xml file. There were "errors" in the 
+xml code being received. Nancy used the validate tool in IntelliJ to fix the 
+errors in the xml data.
+
+### Week 11
+    * Savannah and Nancy deployed the service to OpenShift.
+    * Savannah and Alex "cleaned up the code".
+    
+### Week 12
+    * The group discussed and then created the fist tests for the service.
+    * Alex finished creating the other necessary tests for the program.
+    * Savannah and Alex created JavaDoc for the service.
+    * The group made a powerpoint presentation to coincide with the project code.
+    * Nancy created the JavaDoc files needed for the services.
+    * 

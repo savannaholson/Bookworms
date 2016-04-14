@@ -1,16 +1,15 @@
 # Bookworms
 
 This repository is for the Team Project for Enterprise Java Spring 2016
-Nancy Adam
-Savannah Olson
 Alex Drousth
+Savannah Olson
+Nancy Adam
+
 
 ### Problem Statement
 
 Create a REST web service from GOODREADS. This service will be modified
-to allow our users to find additional books written by the same author 
-or in the same series. This service will also pare down the large amount
-of data from the service to what is actually needed in our individual projects.
+to allow our users to find additional books written by the same author. 
 
 ### Project Technologies/Techniques
 
