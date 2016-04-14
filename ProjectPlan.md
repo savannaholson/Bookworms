@@ -30,10 +30,14 @@
 - [X] Nancy and Savannah created application flow file
 
 ### Week 11
-- [ ] Group meeting regarding completed project presentation.
-- [ ] Make powerpoint presentation to coincide with project code.
-- [ ] Deploy the service to OpenShift.
-
+- [X] Group meeting regarding completed project presentation.
+- [X] Deploy the service to OpenShift.
+- [X] Clean up code
 
 ### Week 12
-- [ ] Group presentation.
+- [X] Make powerpoint presentation to coincide with project code.
+- [X] Create tests for the web service
+- [X] Create JavaDoc comments for the service
+- [X] Generate the JavaDoc files needed for the service
+- [X] Complete the Journal and Projet plan
+- [X] Group presentation

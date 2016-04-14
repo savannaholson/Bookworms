@@ -9,7 +9,8 @@ Nancy Adam
 ### Problem Statement
 
 Create a REST web service from GOODREADS. This service will be modified
-to allow our users to find additional books written by the same author. 
+to allow our users to find additional books written by the same author
+from a single source. 
 
 ### Project Technologies/Techniques
 
