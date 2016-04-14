@@ -83,20 +83,14 @@ public class Bookworm {
      *
      * @param xml The xml to be unmarshalled
      * @return a pojo representing the data from the xml
+     * @exception JAXBException
      */
     public GoodreadsResponseType unmarshalGoodreadsXML(String xml) throws JAXBException {
 
-        GoodreadsResponseType books = null;
-
-        try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(GoodreadsResponseType.class);
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            StringBuffer xmlStr = new StringBuffer(xml);
-            books = (GoodreadsResponseType) unmarshaller.unmarshal(new StreamSource(new StringReader(xmlStr.toString()) ) );
-
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
+        JAXBContext jaxbContext = JAXBContext.newInstance(GoodreadsResponseType.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        StringBuffer xmlStr = new StringBuffer(xml);
+        GoodreadsResponseType books = (GoodreadsResponseType) unmarshaller.unmarshal(new StreamSource(new StringReader(xmlStr.toString())));
 
         return books;
     }

@@ -15,7 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by Student on 3/30/2016.
+ * Created by Alex Drousth on 3/30/2016.
  */
 public class GoodreadsAPI {
 
@@ -24,7 +24,15 @@ public class GoodreadsAPI {
     private final static String AUTHOR_INFO_URL = "api/author_url/";
     private final static String AUTHOR_BOOK_URL = "author/list/";
 
-    // takes author info xml and gets their id
+
+    /**
+     * takes author info xml from goodreads and returns their id
+     *
+     * @param xml the XMl to extract the author id from
+     * @return a string containing the author's goodreads id
+     * @exception IOException
+     * @exception SAXException
+     */
     public String getAuthorId(String xml) throws IOException, SAXException{
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -50,7 +58,14 @@ public class GoodreadsAPI {
         return authorId;
     }
 
-    // gets xml from goodreads api based on param
+    /**
+     * takes author info xml from goodreads and returns their id
+     *
+     * @param param The string to be used in the URL to goodreads api.
+     * @param type The type of api request being made, either author or books.
+     * @return String containing the XML from goodreads
+     * @exception IOException
+     */
     public String getXmlFromGoodreads(String param, String type) throws IOException {
         URL goodreadsUrl = null;
 
@@ -96,8 +111,15 @@ public class GoodreadsAPI {
     }
 
 
-
-    // gets up to 30 books by an author from goodreads, returns as xml
+    /**
+     * gets XML from goodreads containing information for up to 30 books by an author
+     *
+     * @param firstName The author's first name.
+     * @param lastName The author's last name.
+     * @return String containing the XML from goodreads
+     * @exception IOException
+     * @exception SAXException
+     */
     public String getBooksByAuthorName(String firstName, String lastName) throws IOException, SAXException {
         String author;
         if (firstName.length() == 0 || lastName.length() == 0) {
