@@ -31,7 +31,6 @@ public class GoodreadsAPITest {
         xml = "<GoodreadsResponse><Request><authentication>true</authentication><key>FCu2HvScdASGklfD1GmDBg</key><method>api_author_link</method></Request></GoodreadsResponse>";
         String authorId = api.getAuthorId(xml);
         assertTrue(authorId.length() == 0);
-        System.out.println(xml.length());
     }
 
 
@@ -59,7 +58,6 @@ public class GoodreadsAPITest {
     public void getXmlFromGoodreadsForAuthorBooks() throws Exception {
         String authorId = "14463184";
         String goodreadsXml = api.getXmlFromGoodreads(authorId, "books");
-        System.out.println(goodreadsXml);
 
         assertFalse(goodreadsXml.equals(""));
 
