@@ -10,6 +10,7 @@ import java.io.StringReader;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.log4j.Logger;
 
 import javax.xml.bind.*;
 import javax.xml.transform.stream.StreamSource;
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.databind.SerializationConfig;
 // The Java class will be hosted at the URI path "/webservice"
 @Path("/webService")
 public class Bookworm {
+    private final Logger log = Logger.getLogger(this.getClass());
 
     /**
      * This method takes the author's first and last names and uses them to return books by the author in JSON format
@@ -52,13 +54,13 @@ public class Bookworm {
         try {
             xml = apiRequest.getBooksByAuthorName(authorFirst, authorLast);
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            log.error(e);
             return "www.goodreads.com is currently unavailable, please try again later.";
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e);
             return "Author with first name: " + authorFirst + " and last name: " + authorLast + " could not be found.";
         } catch (SAXException e) {
-            e.printStackTrace();
+            log.error(e);
             return e.toString();
         }
 
@@ -68,7 +70,7 @@ public class Bookworm {
         try {
             books = unmarshalGoodreadsXML(xml);
         } catch (JAXBException e) {
-            e.printStackTrace();
+            log.error(e);
             return e.toString();
         }
 
@@ -110,7 +112,7 @@ public class Bookworm {
         try {
             json = mapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            log.error(e);
             return "Error with response from www.goodreads.com";
         }
 

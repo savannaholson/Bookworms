@@ -1,5 +1,6 @@
 package webService;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -18,6 +19,7 @@ import java.net.URL;
  * Created by Alex Drousth on 3/30/2016.
  */
 public class GoodreadsAPI {
+    private final Logger log = Logger.getLogger(this.getClass());
 
     private final static String SERVICE_URL = "https://www.goodreads.com/";
     private final static String API_KEY = "?key=FCu2HvScdASGklfD1GmDBg";
@@ -46,13 +48,13 @@ public class GoodreadsAPI {
             authorId = document.getElementsByTagName("author").item(0).getAttributes().item(0).getNodeValue();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e);
             throw e;
         } catch (SAXException e) {
-            e.printStackTrace();
+            log.error(e);
             throw e;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
         }
 
         return authorId;
@@ -76,7 +78,7 @@ public class GoodreadsAPI {
                 goodreadsUrl = new URL(SERVICE_URL + AUTHOR_BOOK_URL + param + API_KEY);
             }
         } catch (MalformedURLException ex) {
-            System.out.println(ex);
+            log.error(ex);
             return "";
         }
 

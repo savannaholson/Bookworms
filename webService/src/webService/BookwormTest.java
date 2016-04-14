@@ -4,13 +4,15 @@ import entities.GoodreadsResponseType;
 import org.junit.Before;
 import org.junit.Test;
 
+
+import java.util.logging.Logger;
+
 import static org.junit.Assert.*;
 
 /**
  * Created by Alex on 4/13/2016.
  */
-public class BookwormTest {
-    private Bookworm worms;
+public class BookwormTest {    private Bookworm worms;
     @Before
     public void setUp() throws Exception {
         worms = new Bookworm();
@@ -25,7 +27,6 @@ public class BookwormTest {
     @Test
     public void getRecomendationWithTitleAndAuthorFail() throws Exception {
         String json = worms.getRecomendationWithTitleAndAuthor("ppppppppppppp", "");
-        System.out.println(json);
         assertTrue(json.equals("Author: ppppppppppppp  could not be found."));
     }
 
