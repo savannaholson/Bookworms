@@ -7,6 +7,7 @@ import org.xml.sax.SAXException;
 import javax.ws.rs.*;
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,16 +50,27 @@ public class Bookworm {
 
 
         try {
-            xml = apiRequest.getBooksByAuthorName(authorFirst + "%20" + authorLast);
+            xml = apiRequest.getBooksByAuthorName(authorFirst, authorLast);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            return "www.goodreads.com is currently unavailable, please try again later.";
         } catch (IOException e) {
             e.printStackTrace();
+            return "Author with first name: " + authorFirst + " and last name: " + authorLast + " could not be found.";
         } catch (SAXException e) {
             e.printStackTrace();
+            return e.toString();
         }
 
-        //Nancy's Code
-        GoodreadsResponseType books = unmarshalGoodreadsXML(xml);
 
+        //Nancy's Code
+        GoodreadsResponseType books = null;
+        try {
+            books = unmarshalGoodreadsXML(xml);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+            return e.toString();
+        }
 
         //Savannah's Code
         String json = convertToJSON(books);
@@ -72,7 +84,7 @@ public class Bookworm {
      * @param xml The xml to be unmarshalled
      * @return a pojo representing the data from the xml
      */
-    private GoodreadsResponseType unmarshalGoodreadsXML(String xml) {
+    public GoodreadsResponseType unmarshalGoodreadsXML(String xml) throws JAXBException {
 
         GoodreadsResponseType books = null;
 
@@ -95,7 +107,7 @@ public class Bookworm {
      * @param object the object to be converted into JSON
      * @return a string of JSON representing the object passed in
      */
-    private String convertToJSON(Object object) {
+    public String convertToJSON(Object object) {
 
         ObjectMapper mapper = new ObjectMapper();
         String json = "";
@@ -105,6 +117,7 @@ public class Bookworm {
             json = mapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
+            return "Error with response from www.goodreads.com";
         }
 
         return json;

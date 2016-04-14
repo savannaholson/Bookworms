@@ -8,6 +8,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.ws.WebServiceException;
 import java.io.*;
 import java.net.MalformedURLException;
@@ -24,7 +25,7 @@ public class GoodreadsAPI {
     private final static String AUTHOR_BOOK_URL = "author/list/";
 
     // takes author info xml and gets their id
-    private String getAuthorId(String xml) throws IOException, SAXException{
+    public String getAuthorId(String xml) throws IOException, SAXException{
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
@@ -36,16 +37,23 @@ public class GoodreadsAPI {
 
             authorId = document.getElementsByTagName("author").item(0).getAttributes().item(0).getNodeValue();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw e;
+        } catch (SAXException e) {
+            e.printStackTrace();
+            throw e;
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
         return authorId;
     }
 
     // gets xml from goodreads api based on param
-    private String getXmlFromGoodreads(String param, String type) throws IOException {
+    public String getXmlFromGoodreads(String param, String type) throws IOException {
         URL goodreadsUrl = null;
+
         try {
             if (type == "author") {
                 goodreadsUrl = new URL(SERVICE_URL + AUTHOR_INFO_URL + param + API_KEY);
@@ -54,29 +62,52 @@ public class GoodreadsAPI {
             }
         } catch (MalformedURLException ex) {
             System.out.println(ex);
+            return "";
         }
 
-        InputStream in = goodreadsUrl.openStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-
-        String line = null;
+        InputStream in = null;
+        BufferedReader reader = null;
         String xml = "";
-        while ((line = reader.readLine()) != null) {
-            xml += line;
-            System.out.println(line);
 
+        try {
+            in =  goodreadsUrl.openStream();
+            reader = new BufferedReader(new InputStreamReader(in));
+
+            String line = null;
+
+
+            while ((line = reader.readLine()) != null) {
+                xml += line;
+                //System.out.println(line);
+
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw ex;
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
         }
 
-        reader.close();
+
         return xml;
     }
 
 
 
     // gets up to 30 books by an author from goodreads, returns as xml
-    public String getBooksByAuthorName(String author) throws IOException, SAXException {
+    public String getBooksByAuthorName(String firstName, String lastName) throws IOException, SAXException {
+        String author;
+        if (firstName.length() == 0 || lastName.length() == 0) {
+            author = firstName + lastName;
+        } else {
+            author = firstName + "%20" + lastName;
+        }
         String info = getXmlFromGoodreads(author, "author");
         String id = getAuthorId(info);
+
 
         String xml = getXmlFromGoodreads(id, "books");
 
