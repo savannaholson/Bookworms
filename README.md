@@ -5,6 +5,7 @@ Alex Drousth
 Savannah Olson
 Nancy Adam
 
+###[User Documentation](UserDocs.md);
 
 ### Problem Statement
 
